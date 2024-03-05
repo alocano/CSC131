@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= recipe.title %></title>
+</head>
+<body>
+<div class="container mt-5">
+    <h2><%= recipe.title %></h2>
+    <p><%= recipe.description %></p>
+    <h3>Ingredients:</h3>
+    <ul>
+        <% recipe.ingredients.forEach(function(ingredient) { %>
+            <li><%= ingredient.name %> - <%= ingredient.amount %></li>
+        <% }); %>
+    </ul>
+    <h3>Instructions:</h3>
+    <ol>
+        <% recipe.instructions.forEach(function(instruction) { %>
+            <li><%= instruction %></li>
+        <% }); %>
+    </ol>
+    <p>Prep Time: <%= recipe.prepTime %> minutes</p>
+    <p>Cook Time: <%= recipe.cookTime %> minutes</p>
+    <p>Servings: <%= recipe.servings %></p>
+    <% if (recipe.imageUrl) { %>
+        <img src="<%= recipe.imageUrl %>" alt="<%= recipe.title %>" class="img-fluid">
+    <% } %>
+</div>
+</body>
+</html>

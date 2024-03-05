@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes List</title>
+</head>
+<body>
+<h1>Recipes List</h1>
+<div class="recipes-container">
+    <% if(recipes && recipes.length > 0) { %>
+        <% recipes.forEach(function(recipe) { %>
+            <div class="recipe">
+                <h3><%= recipe.title %></h3>
+                <p><%= recipe.description %></p>
+                <p><strong>Preparation Time:</strong> <%= recipe.prepTime %> minutes</p>
+                <p><strong>Cooking Time:</strong> <%= recipe.cookTime %> minutes</p>
+                <p><strong>Servings:</strong> <%= recipe.servings %></p>
+                <% if (recipe.imageUrl) { %>
+                    <img src="<%= recipe.imageUrl %>" alt="<%= recipe.title %>" class="img-fluid">
+                <% } %>
+                <p><strong>Ingredients:</strong></p>
+                <ul>
+                    <% recipe.ingredients.forEach(function(ingredient) { %>
+                        <li><%= ingredient.name %> - <%= ingredient.amount %></li>
+                    <% }); %>
+                </ul>
+                <p><strong>Instructions:</strong></p>
+                <ol>
+                    <% recipe.instructions.forEach(function(instruction, index) { %>
+                        <li><%= instruction %></li>
+                    <% }); %>
+                </ol>
+                <a href="/recipes/<%= recipe._id %>" class="btn btn-primary">View Details</a>
+            </div>
+        <% }); %>
+    <% } else { %>
+        <p>No recipes found.</p>
+    <% } %>
+</div>
+</body>
+</html>
+

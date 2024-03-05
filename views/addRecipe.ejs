@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Recipe</title>
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Add New Recipe</h2>
+    <form action="/recipes/add" method="post">
+        <div class="mb-3">
+            <label for="title" class="form-label">Recipe Title</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="ingredients" class="form-label">Ingredients (separated by a newline)</label>
+            <textarea class="form-control" id="ingredients" name="ingredients" rows="5" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="instructions" class="form-label">Instructions (separated by a newline)</label>
+            <textarea class="form-control" id="instructions" name="instructions" rows="5" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="prepTime" class="form-label">Preparation Time (in minutes)</label>
+            <input type="number" class="form-control" id="prepTime" name="prepTime">
+        </div>
+        <div class="mb-3">
+            <label for="cookTime" class="form-label">Cooking Time (in minutes)</label>
+            <input type="number" class="form-control" id="cookTime" name="cookTime">
+        </div>
+        <div class="mb-3">
+            <label for="servings" class="form-label">Servings</label>
+            <input type="number" class="form-control" id="servings" name="servings">
+        </div>
+        <div class="mb-3">
+            <label for="imageUrl" class="form-label">Image URL</label>
+            <input type="text" class="form-control" id="imageUrl" name="imageUrl">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+</body>
+</html>
