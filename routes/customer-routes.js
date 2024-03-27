@@ -1,5 +1,5 @@
 const express = require('express')
-const {getAllCustomers, getAddCustomerView, addCustomer, getUpdateCustomerView, updateCustomer, getDeleteCustomerView, deleteCustomer} = require('../controllers/customerController');
+const {getAllCustomers, getAddCustomerView, addCustomer, getUpdateCustomerView, updateCustomer, getDeleteCustomerView, deleteCustomer, searchRecipe, getSearchView, viewRecipe} = require('../controllers/customerController');
 
 
 const router = express.Router();
@@ -11,6 +11,11 @@ router.get('/updateCustomer/:id', getUpdateCustomerView);
 router.post('/updateCustomer/:id', updateCustomer);
 router.get('/deleteCustomer/:id', getDeleteCustomerView);
 router.post('/deleteCustomer/:id', deleteCustomer);
+router.get('/search',getSearchView)
+router.post('/search/results', searchRecipe)
+router.get('/search/results/:id', viewRecipe)
 module.exports = {
     routes: router
 }
+
+

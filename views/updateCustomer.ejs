@@ -7,36 +7,24 @@
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
-                        <label class="col-form-label" for="firstname">First Name</label>
-                        <input type="text" class="form-control" value="<%= customer.firstname %>" name="firstname" placeholder="enter first name" id="firstname">
+                        <label class="col-form-label" for="firstname">Recipe Name</label>
+                        <input type="text" class="form-control" value="<%= customer.firstname %>" name="firstname" placeholder="enter name of recipe" id="firstname">
+                    </div>
+                </div>
+               
+                <div class="col-6">
+                    <div class="form-group">
+                        <label class="col-form-label" for="phonenumber">Number of Portions</label>
+                        <input type="number" class="form-control" value="<%= customer.phonenumber %>" name="phonenumber" placeholder="enter the number of portions this recipe makes" id="phonenumber">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label class="col-form-label" for="lastname">Last Name</label>
-                        <input type="text" class="form-control" value="<%= customer.lastname %>" name="lastname" placeholder="enter last name" id="lastname">
+                        <label class="col-form-label" for="cnic">Time to complete</label>
+                        <input type="text" class="form-control" value="<%= customer.cnic %>" name="cnic" placeholder="enter time to complete" id="cnic">
                     </div>
                 </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <label class="col-form-label" for="phonenumber">Phone Number</label>
-                        <input type="number" class="form-control" value="<%= customer.phonenumber %>" name="phonenumber" placeholder="enter your phone number" id="phonenumber">
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <label class="col-form-label" for="cnic">CNIC</label>
-                        <input type="text" class="form-control" value="<%= customer.cnic %>" name="cnic" placeholder="22222-2222222-2" id="cnic">
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="form-group">
-                        <label for="addres">Address</label>
-                        <textarea class="form-control" name="address" id="address" rows="3">
-                        <%= customer.address %>
-                        </textarea>
-                    </div>
-                </div>
+                
             </div>
             <div class="">
                 <button type="submit" class="btn btn-success">Update</button>

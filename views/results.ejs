@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+    <title>Document</title>
+</head>
+<body>
+    <div class ="container">
+        <h1>Search Results</h1>
+        <ul>
+        <% recipies.forEach(recipe =>{ %>
+            <li>
+                <a href="/search/results/<%= recipe.id %>">
+                    <div class="recipe-card">
+                        <img clas="recipe-image" src="<%=recipe.image%>" alt ="<%=recipe.title%>"/>
+                        <h2 class="recipe-title"><%=recipe.title%></h2>
+                    </div>
+                </a>
+            </li>
+        <%})%>
+    </ul>
+    <a href="/">Back to home page</a>
+    </div>
+</body>
+</html>

@@ -1,4 +1,6 @@
 const {Customer, validate} = require('../models/customer')
+const axios = require('axios')
+const key_api = "36aa612cae804808ae3a93e625717e5c"
 
 const getAllCustomers = async (req, res, next) => {
     const list = await Customer.find().exec();
@@ -59,7 +61,7 @@ const updateCustomer = async(req, res, next) => {
 
 }
 
-const getDeleteCustomerView = async (req, res, next) => {
+const getDeleteCustomerView = async (req, res) => {
     try{
         const id = req.params.id;
         const onecustomer = await Customer.findById(id).exec();
@@ -83,6 +85,29 @@ const deleteCustomer = async (req,res,next) => {
     }
 }
 
+const searchRecipe = async(req,res,next)=>{
+  
+   const query = req.body.query
+   console.log(query)
+   const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${query}&apiKey=${key_api}`)
+   console.log(response.data.totalResults)
+   const recipies = response.data.results;
+   res.render('results', {recipies})
+}
+
+const viewRecipe = async(req,res,next)=>{
+    const {id} = req.params;
+    const response = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${key_api}`)
+    const recipe = response.data;
+    res.render('recipe',{recipe})
+}
+
+const getSearchView = async(req,res,next)=>{
+    res.render('search')
+}
+
+
+
 module.exports = {
     getAllCustomers,
     getAddCustomerView,
@@ -90,5 +115,9 @@ module.exports = {
     getUpdateCustomerView,
     updateCustomer,
     getDeleteCustomerView,
-    deleteCustomer
+    deleteCustomer,
+    searchRecipe,
+    getSearchView,
+    viewRecipe
+    
 }

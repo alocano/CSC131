@@ -2,7 +2,7 @@
     <div class="card-header">
         <div class="row">
             <div class="col-8">
-                <h4 class="font-weight-bold">All Customers</h4>
+                <h4 class="font-weight-bold">All Recipies</h4>
             </div>
             <div class="col-4">
                 <a href="/addCustomer" class="btn btn-success float-right"><i class="fa fa-plus mr-1"></i>Add New</a>
@@ -13,9 +13,9 @@
         <table class="table table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Phone Number</th>
-                    <th scope="col">CNIC</th>
+                    <th scope="col">Recipe Name</th>
+                    <th scope="col">Servings</th>
+                    <th scope="col">Time</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
@@ -23,7 +23,7 @@
                 <% if(customers.length > 0) { %>
                     <% for(let customer of customers) { %>
                     <tr>
-                        <th scope="row"><%= customer.firstname %> <%= customer.lastname %></th>
+                        <th scope="row"><%= customer.firstname %> </th>
                         <td><%= customer.phonenumber %></td>
                         <td><%= customer.cnic %></td>
                         <td>
