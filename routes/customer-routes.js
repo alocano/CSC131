@@ -14,6 +14,9 @@ router.post('/deleteCustomer/:id', deleteCustomer);
 router.get('/search',getSearchView)
 router.post('/search/results', searchRecipe)
 router.get('/search/results/:id', viewRecipe)
+router.get('/test', (req, res) => {
+    res.render('test');
+})
 module.exports = {
     routes: router
 }

@@ -2,6 +2,7 @@ const {Customer, validate} = require('../models/customer')
 const axios = require('axios')
 const key_api = "36aa612cae804808ae3a93e625717e5c"
 
+
 const getAllCustomers = async (req, res, next) => {
     const list = await Customer.find().exec();
     res.render('customerlist',{
