@@ -1,71 +1,20 @@
-const {Customer, validate} = require('../models/customer')
+const {recipeUrl, } = require('../models/customer')
 const axios = require('axios')
-const key_api = "36aa612cae804808ae3a93e625717e5c"
+const key_api = "1d68d72bbdce4a3cb35faa452ea79acf"
 
 
 const getAllCustomers = async (req, res, next) => {
-    const list = await Customer.find().exec();
+    const list = await recipeUrl.find().exec();
     res.render('customerlist',{
         customers: list
     });
 }
 
-const getAddCustomerView = (req, res, next) => {
-    res.render('addCustomer');
-}
-
-const addCustomer = async (req, res, next) => {
-    const {error} = validate(req.body);
-    if(error) return res.status(422).send(error.details[0].message);
-    const data = req.body;
-    let customer = await new Customer({
-        firstname: data.firstname,
-        lastname: data.lastname,
-        phonenumber: data.phonenumber,
-        cnic: data.cnic,
-        address: data.address
-    });
-    customer = await customer.save();
-    res.redirect('/');
-
-
-}
-
-const getUpdateCustomerView = async (req, res, next) => {
-    try{
-        const id = req.params.id;
-        const onecustomer = await Customer.findById(id).exec();
-        res.render('updateCustomer', {
-            customer: onecustomer
-        });
-
-    }catch(error){
-        res.status(400).send(error.message);
-    }
-}
-
-const updateCustomer = async(req, res, next) => {
-    const {error} = validate(req.body);
-    if(error) return res.status(422).send(error.details[0].message);
-    const id = req.params.id;
-    const data = req.body;
-    let customer = await Customer.findByIdAndUpdate(id, {
-        firstname: data.firstname, 
-        lastname: data.lastname,
-        phonenumber: data.phonenumber,
-        cnic: data.cnic,
-        address: data.address
-    }, {new: true});
-    if(!customer) return res.status(404).send('Customer with the given id not found');
-
-    res.redirect('/');
-
-}
 
 const getDeleteCustomerView = async (req, res) => {
     try{
         const id = req.params.id;
-        const onecustomer = await Customer.findById(id).exec();
+        const onecustomer = await recipeUrl.findById(id).exec();
         res.render('deleteCustomer', {
             customer: onecustomer
         });
@@ -78,7 +27,7 @@ const getDeleteCustomerView = async (req, res) => {
 const deleteCustomer = async (req,res,next) => {
     try {
         const id = req.params.id;
-        const customer = await Customer.findByIdAndDelete(id);
+        const customer = await recipeUrl.findByIdAndDelete(id);
         if(!customer) return res.status(404).send('Customer with the given id not found');
         res.redirect('/');
     } catch(error) {
@@ -108,17 +57,35 @@ const getSearchView = async(req,res,next)=>{
 }
 
 
+const favoriteRecipe = async(req,res,next)=>{
+    const {id} = req.params
+    const response = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${key_api}`)
+    const recipe = response.data
+    let recipeID = await new recipeUrl({
+        recipeid: id,
+        recipeTitle: recipe.title
+    });
+    recipeID = await recipeID.save();
+    res.redirect('/');
+}
+
+const getFavoriteView = async(req,res,next)=>{
+    const {id} = req.params;
+    const mongoRecipe = await recipeUrl.findById(id).exec()
+    const response = await axios.get(`https://api.spoonacular.com/recipes/${mongoRecipe.recipeid}/information?apiKey=${key_api}`)
+    const recipe = response.data
+    res.render('favorites',{mongoRecipe, recipe})
+}
+
 
 module.exports = {
     getAllCustomers,
-    getAddCustomerView,
-    addCustomer,
-    getUpdateCustomerView,
-    updateCustomer,
     getDeleteCustomerView,
     deleteCustomer,
     searchRecipe,
     getSearchView,
-    viewRecipe
+    viewRecipe,
+    favoriteRecipe,
+    getFavoriteView
     
 }

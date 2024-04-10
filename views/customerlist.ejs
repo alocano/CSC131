@@ -5,7 +5,7 @@
                 <h4 class="font-weight-bold">All Recipies</h4>
             </div>
             <div class="col-4">
-                <a href="/addCustomer" class="btn btn-success float-right"><i class="fa fa-plus mr-1"></i>Add New</a>
+                <a href="/search" class="btn btn-success float-right"><i class="fa fa-plus mr-1"></i>Search</a>
             </div>
         </div>
     </div>
@@ -14,20 +14,16 @@
             <thead class="table-dark">
                 <tr>
                     <th scope="col">Recipe Name</th>
-                    <th scope="col">Servings</th>
-                    <th scope="col">Time</th>
-                    <th scope="col">Actions</th>
+                  
                 </tr>
             </thead>
             <tbody>
                 <% if(customers.length > 0) { %>
                     <% for(let customer of customers) { %>
                     <tr>
-                        <th scope="row"><%= customer.firstname %> </th>
-                        <td><%= customer.phonenumber %></td>
-                        <td><%= customer.cnic %></td>
+                        <th scope="row"><a href="/favorites/<%=customer._id%>"><%=customer.recipeTitle%></a> </th>
+                        
                         <td>
-                            <a href="/updateCustomer/<%= customer._id %>" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
                             <a href="/deleteCustomer/<%= customer._id %>" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
