@@ -18,7 +18,7 @@
       <div class="collapse navbar-collapse" id="navbarColor02">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link active" href="#">Recipe Search and Save Program!
+            <a class="nav-link active" href="#">
               <span class="visually-hidden">(current)</span>
             </a>
             <a href="/search">Serach</a>
@@ -28,6 +28,11 @@
   
       </div>
     </div>
+    <form class="d-flex" action ="/search/results" method = "POST">
+          <input class="form-control me-sm-2" type="text" name = "query"  placeholder="Search">
+          <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</div>
   </nav>
       <div class="container"><%- body %></div>
 
