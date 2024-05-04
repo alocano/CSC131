@@ -21,3 +21,9 @@ Optional Features (Nice to have) include but not limited to:[Extra Credit – in
 - Shopping List – CRUD operations on the list
 - Pantry feature (what you have in your pantry, find recipes I can make
 - Etc. Look at some more basic functionality, see Spoonacular Model or other online recipe applications for ideas.
+
+To run this app:
+- Extract the main folder
+- Shift + right-click the folder and click "Open PowerShell window here" OR open PowerShell and navigate to the main directory
+- In the PowerShell window, type "npm run devStart"
+- Ctrl + click the url OR type in "localhost:8080" into your browser's address bar to see the site
