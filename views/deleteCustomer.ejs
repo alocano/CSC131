@@ -4,7 +4,7 @@
             <h4 class="font-weight-bold"><%= customer.recipeTitle %></h4>
             <p class="lead">Alert! do you want to remove this recipe from your favorites?</p>
             <p class="lead">
-            <form action="/deleteCustomer/<%= customer._id %>" method="POST">
+            <form action="/deleteUserCustomer/<%= customer._id %>" method="POST">
                 <button class="btn btn-danger btn-lg" type="submit">Delete</button>
                 <a class="btn btn-light btn-lg" href="/">Cancel</a>
             </form>

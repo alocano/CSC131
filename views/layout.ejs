@@ -21,17 +21,33 @@
             <a class="nav-link active" href="#">
               <span class="visually-hidden">(current)</span>
             </a>
-            <a href="/search">Serach</a>
-            
+            <form class="d-flex" action ="/search/results" method = "POST">
+              <input class="form-control me-sm-2" type="text" name = "query"  placeholder="Search">
+              <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+      </form>  
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Categories</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/search/cuisine/american">American</a>
+          <a class="dropdown-item" href="/search/cuisine/mexican">Mexican</a>
+          <a class="dropdown-item" href="/search/cuisine/italian">Itallian</a>
+          <a class="dropdown-item" href="/search/cuisine/japanese">Japanese</a>
+          <a class="dropdown-item" href="/search/cuisine/chinese">Chinese</a>
+          <a class="dropdown-item" href="/search/cuisine/indian">Indian</a>
+          <a class="dropdown-item" href="/search/cuisine/thai">Thai</a>
+          <a class="dropdown-item" href="/search/cuisine/Mediterranean">Mediterranean</a>
+
+
+
+
+        </div>
+      </li>
         </ul>
         
   
       </div>
     </div>
-    <form class="d-flex" action ="/search/results" method = "POST">
-          <input class="form-control me-sm-2" type="text" name = "query"  placeholder="Search">
-          <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-  </form>
+    
 </div>
   </nav>
       <div class="container"><%- body %></div>

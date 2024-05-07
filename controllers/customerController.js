@@ -1,12 +1,14 @@
-const {recipeUrl, } = require('../models/customer')
+const {newRecipe,userRecipe,recipeUrl} = require('../models/customer')
 const axios = require('axios')
-const key_api = "1d68d72bbdce4a3cb35faa452ea79acf"
+const key_api = "0a20aa02ae154afbba9212b4b8b06a92"
 
 
 const getAllCustomers = async (req, res, next) => {
     const list = await recipeUrl.find().exec();
+    const userList = await userRecipe.find().exec();
     res.render('customerlist',{
-        customers: list
+        customers: list,
+        users: userList
     });
 }
 
@@ -24,10 +26,35 @@ const getDeleteCustomerView = async (req, res) => {
     }
 }
 
+const getDeleteUserView = async (req, res) => {
+    try{
+        const id = req.params.id;
+        const onecustomer = await userRecipe.findById(id).exec();
+        res.render('deleteUserCustomer', {
+            customer: onecustomer
+        });
+
+    }catch(error){
+        res.status(400).send(error.message);
+    }
+}
+
+
 const deleteCustomer = async (req,res,next) => {
     try {
         const id = req.params.id;
         const customer = await recipeUrl.findByIdAndDelete(id);
+        if(!customer) return res.status(404).send('Customer with the given id not found');
+        res.redirect('/');
+    } catch(error) {
+        res.status(400).send(error.message);
+    }
+}
+
+const deleteUserFavorite = async (req,res,next) => {
+    try {
+        const id = req.params.id;
+        const customer = await userRecipe.findByIdAndDelete(id);
         if(!customer) return res.status(404).send('Customer with the given id not found');
         res.redirect('/');
     } catch(error) {
@@ -77,6 +104,52 @@ const getFavoriteView = async(req,res,next)=>{
     res.render('favorites',{mongoRecipe, recipe})
 }
 
+const getUserFavoriteView = async(req,res,next)=>{
+    const {id} = req.params;
+    const recipe = await userRecipe.findById(id).exec()
+    res.render('userfavorites',{recipe})
+}
+
+
+const addRecipe = async(req,res,next)=>{
+    const title = req.body.title;
+    const ingredients = req.body.ingredients;
+    const instructions = req.body.instructions;
+    let recipe = await new userRecipe({
+        title: title,
+        ingredients: ingredients.split('\n'),
+        instructions: instructions.split('\n'),
+    });
+        await recipe.save();
+        res.redirect('/');
+}
+
+const getUpdateUserView = async(req,res,next)=>{
+    const id = req.params.id;
+    const recipe = await userRecipe.findById(id).exec();
+    res.render('updateUserRecipe',{
+        recipe: recipe
+    });
+}
+
+const updateUser = async(req,res,next)=>{
+    const id = req.params.id;
+    const data = req.body;
+    let recipe = await userRecipe.findByIdAndUpdate(id, {
+        title: data.title,
+        ingredients: data.ingredients.split('\n'),
+        instructions: data.instructions.split('\n'),
+    }, {new: true});
+    recipe =await recipe.save(),
+        res.redirect('/');
+}
+
+const advancedSearch = async(req,res,next)=>{
+    const type = req.params.id;
+    const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${type}&apiKey=${key_api}`)
+    const recipies = response.data.results;
+    res.render('results', {recipies})
+}
 
 module.exports = {
     getAllCustomers,
@@ -86,6 +159,14 @@ module.exports = {
     getSearchView,
     viewRecipe,
     favoriteRecipe,
-    getFavoriteView
+    getFavoriteView,
+    addRecipe,
+    getUserFavoriteView,
+    deleteUserFavorite,
+    getDeleteUserView,
+    deleteUserFavorite,
+    getUpdateUserView,
+    advancedSearch,
+    updateUser
     
 }

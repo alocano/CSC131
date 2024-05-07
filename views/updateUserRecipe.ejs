@@ -1,0 +1,32 @@
+<div class="card">
+    <div class="card-header">
+        <h4 class="font-weight-bold">Update Recipe</h4>
+    </div>
+    <div class="container mt-5">
+        <form action="/updateUser/<%= recipe._id %>" method="post">
+                <div class="mb-3">
+                    <div class="form-group">
+                        <label class="col-form-label" for="title">Recipe Title</label>
+                        <input type="text" class="form-control" value="<%= recipe.title %>" name="title" placeholder=<%= recipe.title%> id="title">
+                    </div>
+                <div class="mb-3">
+                    <div class="form-group">
+                        <label class="col-form-label" for="ingredients">Ingredients</label>
+                        <textarea  type="text"  class="form-control" value="<%= recipe.ingredients %>" id="ingredients" name="ingredients" rows="5" required></textarea>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="form-group">
+                        <label class="col-form-label" for="phonenumber">Instructions</label>
+                        <textarea type="text" class="form-control" value="<%= recipe.instructions %>" name="instructions"  id="instructions" rows = "5"></textarea>
+                    </div>
+                </div>
+
+            </div>
+            <div class="">
+                <button type="submit" class="btn btn-success">Update</button>
+                <a href="/" class="btn btn-light">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

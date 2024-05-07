@@ -1,5 +1,5 @@
 const express = require('express')
-const {getAllCustomers, getDeleteCustomerView, deleteCustomer, searchRecipe, getSearchView, viewRecipe, favoriteRecipe, getFavoriteView} = require('../controllers/customerController');
+const {getAllCustomers, getDeleteCustomerView, deleteCustomer, searchRecipe, getSearchView, viewRecipe, favoriteRecipe, getFavoriteView, addRecipe, getUserFavoriteView, getDeleteUserView, deleteUserFavorite, getUpdateUserView, updateUser, advancedSearch} = require('../controllers/customerController');
 
 
 const router = express.Router();
@@ -16,6 +16,16 @@ router.post('/favorites/:id', getDeleteCustomerView)
 router.get('/test', (req, res) => {
     res.render('test');
 })
+router.get('/addRecipe', (req, res) =>{
+    res.render('addRecipe');
+})
+router.post('/addRecipe',addRecipe)
+router.get('/userFavorites/:id',getUserFavoriteView)
+router.get('/deleteUserCustomer/:id', getDeleteUserView)
+router.post('/deleteUserCustomer/:id', deleteUserFavorite)
+router.get('/updateUser/:id',getUpdateUserView)
+router.post('/updateUser/:id',updateUser)
+router.get('/search/cuisine/:id', advancedSearch )
 module.exports = {
     routes: router
 }

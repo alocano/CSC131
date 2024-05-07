@@ -9,23 +9,20 @@
 <body>
     <div class="container">
 
-     <form  action ="/favorites/<%=mongoRecipe._id%>" method = "POST">
+     <form  action ="/deleteUserCustomer/<%=recipe._id%>" method = "GET">
         <button type="submit">Remove from Favorites</button>
     </form>
     <h1><%=recipe.title%></h1>
-    <img src="<%=recipe.image%>" alt="<%=recipe.title%>"/> 
     <h2>Ingredients</h2>
     <ul>
-        <%recipe.extendedIngredients.forEach(ingredient => {%>
-            <li><%=ingredient.original%></li>
-        <%})%>
-    </ul>
+        <% recipe.ingredients.forEach(function(ingredient) { %>
+            <li><%= ingredient %></li>
+        <% }); %>    </ul>
     <h2>Instructions</h2>
     <ol>
-        <%recipe.analyzedInstructions[0].steps.forEach(step => {%>
-            <li><%=step.step%></li>
-
-        <%})%>
+        <% recipe.instructions.forEach(function(instruction) { %>
+            <li><%= instruction %></li>
+        <% }); %>
     </ol>
     <div><button onclick="printPage()">Print Page</button></div>
 
