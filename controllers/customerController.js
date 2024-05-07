@@ -1,6 +1,6 @@
 const {newRecipe,userRecipe,recipeUrl} = require('../models/customer')
 const axios = require('axios')
-const key_api = "0a20aa02ae154afbba9212b4b8b06a92"
+const key_api = "a477f216ec754b2f85cbde4dc4bf262f"
 
 
 const getAllCustomers = async (req, res, next) => {

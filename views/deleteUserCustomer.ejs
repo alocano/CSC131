@@ -1,7 +1,7 @@
 <div class="jumbotron">
     <div class="row">
         <div class="col-8">
-            <h4 class="font-weight-bold"><%= customer.recipeTitle %></h4>
+            <h4 class="font-weight-bold"><%= customer.title %></h4>
             <p class="lead">Alert! do you want to remove this recipe from your favorites?</p>
             <p class="lead">
             <form action="/deleteUserCustomer/<%= customer._id %>" method="POST">
