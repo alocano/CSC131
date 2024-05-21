@@ -1,4 +1,4 @@
-# Tasty-Tech
+# Tasty-Tech!
 The app will provide for management of a Cookbook, including access to recipes
 from a recipe API (Spoonacular) as well as locally stored recipes (MongoDB)
 
@@ -15,14 +15,16 @@ Required Features include:
 - Save Recipe (locally)
 - Print Recipe
 - Recipe Categorizations
-
-Optional Features (Nice to have) include but not limited to:[Extra Credit – in addition to Required Features]
-- Favorites flagging and list, view favorite recipe list and choose recipe to view from the favorites list
-- Shopping List – CRUD operations on the list
-- Pantry feature (what you have in your pantry, find recipes I can make
-- Etc. Look at some more basic functionality, see Spoonacular Model or other online recipe applications for ideas.
+- Favorites flagging and list, view favorite recipe list and choose recipe to view from the favorites list (Extra credit)
 
 To run this app:
+
+<ins>Windows (Using PowerShell):</ins>
 - Extract and open the main folder
 - Right click "run.ps1"
 - Select "Run with PowerShell"
+
+<ins>Using IDE (Recommend for mac):</ins>
+- Download and extrace the file
+- Import into workspace
+- In terminal, run "npm run devStart" and run locally
